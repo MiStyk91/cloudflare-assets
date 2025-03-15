@@ -16,6 +16,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Check for composer.json
+        run: |
+          if [ ! -f composer.json ]; then
+            echo "composer.json not found."
+            exit 1
+          fi
+
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
 
